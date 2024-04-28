@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子公告ビューアのTelnet over SSL/TLSとtalk対応</title>
+    <style>
+        /* PCや大きなデバイス用の基本スタイル */
+        body {
+            margin: 20px;
+            padding: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            /* スマホやタブレット用のスタイル */
+            body {
+                font-size: 18px;  /* 文字サイズの調整 */
+                margin: 10px;     /* 余白の調整 */
+            }
+            /* すべてのボックスや要素の幅を最大化 */
+            div, article, section, header, footer, nav, aside {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            /* リンクやボタンなどのタッチ要素のパディングを調整 */
+            a, button {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="2023-09-07-tsfrv.css"><style>body { font-family: Noto Serif Tangut, IPAmjMincho; }</style></head>
+<body>
+    <a href="index.html">戻る</a><h1>電子公告ビューアのTelnet over SSL/TLSとtalk対応</h1>
+<p>昨日の昼に登さんの電子公告がTelnet over SSL/TLSとtalk対応したので、昼休みに電子公告ビューアをtelnets対応に改修。talkという懐かしいチャット機能が入ったもんだから、ログに落とした公告が崩れてしまって、帰りの電車で &gt;&gt; &lt;&lt; で囲まれたチャットを分離する処理を実装するも、どうやっても公告が崩れてしまうし、行またぎなんかで綺麗に分類できない境界例が出てくる。</p>
+<p>夜中に登さんからチャットは1パケットに全メッセージ、公告は1パケットに1文字かつ50ms以上を空けて送っているとヒントをいただいた。TLSライブラリ越しのbytestreamだからなーと悩んでいたが、bytestreamといってもパケットが来た分から流れている訳で、単にパケットサイズを見て振り分けを処理すれば問題なく綺麗に分離できた。今朝になって起きたら行中にtalkが割り込むことはなくなって、色分けの処理も追加されていたので、視覚的にも公告とチャットがより見分けやすくなっている。</p>
+<p>世の中的にはリモートコンソールの暗号化はtelnetsよりもSSHという印象もあるが、公告というアプリケーション特性を考えると、fingerprintよりもサーバー証明書でサイトの真正性を証明できた方が良いし、とはいえブラウザと違って証明書の内容を表示する機能がないので、接続時に表示した方がいいのかが悩みどころ。</p><footer>作成日: 2023-09-07 </footer>
+</body>
+</html>

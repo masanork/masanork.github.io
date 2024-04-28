@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSVの罠</title>
+    <style>
+        /* PCや大きなデバイス用の基本スタイル */
+        body {
+            margin: 20px;
+            padding: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            /* スマホやタブレット用のスタイル */
+            body {
+                font-size: 18px;  /* 文字サイズの調整 */
+                margin: 10px;     /* 余白の調整 */
+            }
+            /* すべてのボックスや要素の幅を最大化 */
+            div, article, section, header, footer, nav, aside {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            /* リンクやボタンなどのタッチ要素のパディングを調整 */
+            a, button {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="2023-09-23-cskv.css"><style>body { font-family: Noto Serif Tangut, IPAmjMincho; }</style></head>
+<body>
+    <a href="index.html">戻る</a><h1>CSVの罠</h1>
+<p>語義に従うならば、カンマで区切られた値を持ったテキストファイルであれば何でもCSVと呼ぶことができるものの、エンジニアであれば暗黙のうちに列がキー、行がレコードとなっているものを想像することが多いのではないでしょうか。</p>
+<p>とはいえ実際には単にカンマで区切られたフリーフォーマットのCSVファイルで統計情報を公表している役所もあるし、自治体システム標準化のデータ標準・連携標準のようにキー・値、キー・値と交互に並んだ形式のCSVファイルもあります。後者はレコードによって含まれる項目が異なる場合や、ネストしたデータ構造を扱う場合に便利ではあって、固定長電文の時代から似たようなデータ構造は広く使われてきた歴史があります。</p>
+<p>こうしたフォーマットは形式的にはCSVといえなくもないし、CSVとして開けなくもないのですが、pandasをはじめとした一般的なライブラリーで思うように扱えません。さらに何かしらのエラーで値を一つ読み飛ばした場合など、順序性に依存しているが故にキーと値の対応関係が崩れてしまいます。CSVスキーマやTable Schemaなどの仕様を使ってメタデータを付与することもできず、パーサーを使ったデータの検証も困難です。</p>
+<p>こういったデータを表現するのであれば、本来であればCSVよりもJSONを使った方が安全でしょう。また機械的にJSONに変換した上で、JSONスキーマで検証することも考えられるかも知れません。という訳で、こういった2次元の表になっておらず、各行にキー・値を持つCSVファイルのことを仮にCSKV (Camma Separated Key Value)と呼ぶことにして、cskv2jsonというツールをつくってみました。とりあえずはコンバーターをつくっただけですが、暇を見て変換したCSKVをJSONスキーマで検証したり、Frictionless DataのCSKVバインディングなんかをつくれないか思案しています。</p><footer>作成日: 2023-09-23 </footer>
+</body>
+</html>
