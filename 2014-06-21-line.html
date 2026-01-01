@@ -87,6 +87,8 @@
                     <span><time datetime="2014-06-21">2014-06-21</time></span>
                     
                     
+                    
+                    
                 </div>
             </header>
             
@@ -96,20 +98,23 @@
 <blockquote cite="http://developers.linecorp.com/blog/?p=2381" title="Adopting SPDY in Line - Part 1: An Overview - LINE Engineers Blog"><p>We allow for non-encrypted connections. SPDY is usually used with <a class="keyword" href="http://d.hatena.ne.jp/keyword/TLS">TLS</a>, but this slows down connection times and transfers-especially over mobile connections. Thus we decided to allow for non-encrypted connections over a mobile network.</p>
 </blockquote>
 
-<p>LINE互換クライアント開発者のまとめた<a href="http://altrepo.eu/git/line-protocol.git/blob/afd428c0ab9173a5eed15c24496dff577c73b25e:/line-protocol.md">&#x89E3;&#x6790;&#x7D50;&#x679C;</a>によると、LINEクライアントはgd2.line.<a class="keyword" href="http://d.hatena.ne.jp/keyword/naver">naver</a>.jp:443に接続し、メッセージは<a class="keyword" href="http://d.hatena.ne.jp/keyword/Apache">Apache</a> Thrift TCompactProtocolで直列化されているようだ。接続先を確認したところ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B5%A1%BC%A5%D0%A1%BC%BE%DA%CC%C0%BD%F1">サーバー証明書</a>は2014年4月17日に発行されたGeoTrustの2048bit <a class="keyword" href="http://d.hatena.ne.jp/keyword/RSA">RSA</a>形式のもので、<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a> Heartbleed問題を受けて再発行されたことを確認できる。<br />
+<p>LINE互換クライアント開発者のまとめた<a href="http://altrepo.eu/git/line-protocol.git/blob/afd428c0ab9173a5eed15c24496dff577c73b25e:/line-protocol.html">&#x89E3;&#x6790;&#x7D50;&#x679C;</a>によると、LINEクライアントはgd2.line.<a class="keyword" href="http://d.hatena.ne.jp/keyword/naver">naver</a>.jp:443に接続し、メッセージは<a class="keyword" href="http://d.hatena.ne.jp/keyword/Apache">Apache</a> Thrift TCompactProtocolで直列化されているようだ。接続先を確認したところ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B5%A1%BC%A5%D0%A1%BC%BE%DA%CC%C0%BD%F1">サーバー証明書</a>は2014年4月17日に発行されたGeoTrustの2048bit <a class="keyword" href="http://d.hatena.ne.jp/keyword/RSA">RSA</a>形式のもので、<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a> Heartbleed問題を受けて再発行されたことを確認できる。<br />
 CipherにはDHE-<a class="keyword" href="http://d.hatena.ne.jp/keyword/RSA">RSA</a>-AES128-SHAを使っている。これは<a href="http://googleonlinesecurity.blogspot.jp/2011/11/protecting-data-for-long-term-with.html">Google&#x304C;2011&#x5E74;&#x306B;OpenSSL&#x30B3;&#x30DF;&#x30E5;&#x30CB;&#x30C6;&#x30A3;&#x30FC;&#x306B;&#x5BC4;&#x4ED8;</a>した前方秘匿性をサポートした鍵交換<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>で、<a href="http://www.businessnewsline.com/biztech/201308151725580010.html">Lavabit&#x4E8B;&#x4EF6;</a>のように当局から<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C8%EB%CC%A9%B8%B0">秘密鍵</a>の提出を要求されたり、<a href="http://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%BC%E3%83%88%E3%83%96%E3%83%AA%E3%83%BC%E3%83%89">Heartbleed</a>で<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C8%EB%CC%A9%B8%B0">秘密鍵</a>が漏洩したとしても、過去に遡って通信が復号されないよう対策されている。一般の<a class="keyword" href="http://d.hatena.ne.jp/keyword/ISP">ISP</a>が提供する電子メール等と比べても強力なセキュリティー対策が施されているといえる。<br />
 公表されている情報を総合して<span class="deco" style="font-weight:bold;">日本国内のLINE利用者による通信を適法に韓国当局が傍受することは難しい</span>。とはいえ我々はスノーデン事件の教訓から、情報機関が各国の法律を無視して国内外の情報収集を行う場合があることを知っている。国家機関による違法な情報収集活動に対して民間事業者のできる対策には限界があり、傍受されていないことを立証するのは<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B0%AD%CB%E2%A4%CE%BE%DA%CC%C0">悪魔の証明</a>だ。傍受は不可能と強弁するよりは、検証可能な事実を積み上げて、技術的な取り組みを説明した方がリスクは小さいだろう。</p>
 
             </div>
             
         <footer class="doc-verification no-print" style="margin-top: 5rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.85rem; color: #666;">
-            <details>
-                <summary style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-                    <span>✓</span>
-                    <span data-i18n-ja="発行元による真正性の証明" data-i18n-en="Issuer Authenticity Proof">発行元による真正性の証明</span>
-                </summary>
-                <div style="padding: 1rem 0;">
-                    <pre style="background: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.4;">{
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div></div>
+                
+                <details>
+                    <summary style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+                        <span>✓</span>
+                        <span data-i18n-ja="発行元による真正性の証明" data-i18n-en="Issuer Authenticity Proof">発行元による真正性の証明</span>
+                    </summary>
+                    <div style="padding: 1rem 0;">
+                        <pre style="background: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.4;">{
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
   ],
@@ -118,7 +123,7 @@ CipherにはDHE-<a class="keyword" href="http://d.hatena.ne.jp/keyword/RSA">RSA<
     "WebADocument"
   ],
   "issuer": "did:web:masanork.github.io",
-  "issuanceDate": "2025-12-31T07:03:26.201Z",
+  "issuanceDate": "2026-01-01T06:26:35.550Z",
   "credentialSubject": {
     "id": "did:web:masanork.github.io/2014-06-21-line",
     "name": "日本国内でのLINE利用を韓国当局が傍受することは困難",
@@ -128,28 +133,128 @@ CipherにはDHE-<a class="keyword" href="http://d.hatena.ne.jp/keyword/RSA">RSA<
     {
       "type": "DataIntegrityProof",
       "cryptosuite": "eddsa-jcs-2022",
-      "verificationMethod": "did:web:masanork.github.io#build-1767164455685-ed25519",
+      "verificationMethod": "did:web:masanork.github.io#build-1767248589672-ed25519",
       "proofPurpose": "assertionMethod",
-      "created": "2025-12-31T07:03:26.201Z",
-      "proofValue": "z2o8rNXnyuZZnkFkMTppKcE4yc2UZA4cH6dUsGXiboDTuAXhjb9V7Zq8V8xPoMLPcfdUMJRYy9ovGVqhT7m2DKdHZ"
+      "created": "2026-01-01T06:26:35.550Z",
+      "proofValue": "z2aq6LSXmfDphhuptvr2UT3coFo7na4LX9AYZwLPxXewyRLkfqnkF1NTERShRNjGqM4W3Xtg5srDhWtyYcHG5z7Ez"
     },
     {
       "type": "DataIntegrityProof",
       "cryptosuite": "ml-dsa-44-jcs-2025",
-      "verificationMethod": "did:web:masanork.github.io#build-1767164455685-pqc",
+      "verificationMethod": "did:web:masanork.github.io#build-1767248589672-pqc",
       "proofPurpose": "assertionMethod",
-      "created": "2025-12-31T07:03:26.201Z",
-      "proofValue": "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"
+      "created": "2026-01-01T06:26:35.550Z",
+      "proofValue": "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"
     }
   ]
 }</pre>
-                </div>
-            </details>
+                    </div>
+                </details>
+                
+            </div>
         </footer>
     
         </article>
         
     
     </main>
-</body>
+
+<script type="application/vnd.weba+trust-store" id="weba-trust-store">
+{
+  "didDocuments": [
+    {
+      "@context": [
+        "https://www.w3.org/ns/did/v1",
+        "https://w3id.org/security/suites/jws-2020/v1"
+      ],
+      "id": "did:web:masanork.github.io",
+      "verificationMethod": [
+        {
+          "id": "did:web:masanork.github.io#root-ed25519",
+          "type": "Ed25519VerificationKey2020",
+          "controller": "did:web:masanork.github.io",
+          "publicKeyHex": "e2d4597c3df793b9d9f9e35ccc9be43572c8e433127b02ee842a00273b64deae"
+        },
+        {
+          "id": "did:web:masanork.github.io#build-1767248589672-ed25519",
+          "type": "Ed25519VerificationKey2020",
+          "controller": "did:web:masanork.github.io",
+          "publicKeyHex": "4b298808a3b88a3d8269001643e696fabdc1d0feaa749203f29488651108dca1"
+        },
+        {
+          "id": "did:web:masanork.github.io#build-1767248589672-pqc",
+          "type": "JsonWebKey2020",
+          "controller": "did:web:masanork.github.io",
+          "publicKeyJwk": {
+            "kty": "PQC",
+            "crv": "ML-DSA-44",
+            "x": "UUYOnm76NJOGIEbt3IKAPiNhfF9Um-gr2PLmwyplpA-jSLDmWK2kDmfoFW4b1zzBYEDU_yk7kLS5u8sB-nvlw_7exw-mVLKypnqu-B_zk_--GNlsDIjdMa_WQwL4h-F0to-wmN7iry8kcKsK89oTyxj8l7vZMCJTHFcEzAGqledOxLqR8XK5n9yj1ur8DtDQyyl1JhNJwBSHHBVyQiBdk80EQ1D7BL40KkKansuHdP_TQL0aEx8IoXjHVkvUv6x7ZOCEJO8IF43bSOa9x6BaLZX6wfltsDxXlo5_vC1ceKcfQ1OY1QiP0HnsvEdPBddY7HHcPmNvHg4DauqyKt0vIxxmOJ9jQijaarkQY0LRHPUNDlwDvewOL9lEzupRrAYF7CRbRCq9HuUgi1LYTg9L7SEfNGC2WDjtHJhEZ3aPTO1Q1Ja_mQnBvNoNj1KJ2KI97OkYre0v9XJRNWefe-SDG6MksMxo_Fwu177KFxC0vCJxU9y8rJLdtkFw5UpR89hrDNsttdI6yCJNNOxR5zHW-ab4eneOkOHGGZXZt1r0a0loDX4wA29HNtg-3hl-0a2uxG54U-nQI4bxvNeYWQHJcYczB9Hx9U9UTnJ4eCEObOWh3KvY0io4ZAd91Y3BUsQJauKXH84Wus-9cgypgWBSpQM-0mEehVxPl6DMqfiH8S2Yi6GKyTcH2jOJreIWt7GtlNPN8XI9r8LWikuxk5wEUyzLF60UIXSxeaj3Jj_7YA_XZqMTfUbVtMZxijQz4jqOOvKJBZzw_BixRukld-LjR_rfHlgCh6c2ruJhs599Zvwe65judSPzttLU0BOGip0lTCw2bP8ivwfeKqemK_8E4DzYn4yLPLAgQ42fhbE-BsuQGu19QQTJ8D3HsecnoyDMTXzaZPATI9VxWu951gZI85RikkEFX06PDbBfWN9gJOE0xm6N1U-lQaIY-H4yCBWMHHcb_0HMmfJ2wCQRIZ1kZCVsDbXEZMGRT8s1hnS9DqHPmpZOR7yOHdGjpNT2QaqGVpI2CRsL_G24egMV6GC-1ZEhQnH5C75WDyspqDpu84IO_io_PugCatPQhmjNA4kJgQRbKOn7SQ8rnK0L7Zif9-D8x0dAMrP_AVC5Unxxu4T9A3Fyo6Hi6lcD5cim3kVwPlte_EfKpbCjeX0z5zfN-mOXcsUgKQoYU2B-QJb2PpLjjRivBerUOxK-MA1YKhWTE2D7eYG44TXAfQP-QGWihAbvf9vQJC1q24OTZC7KlDFXZ9GPiWmBf6p0uxfP78SNuMgRbsczPuCJOooo6EHdJ_NeX31O-FtXmtJ9jE11hu5rA0f08Qqi-ypby5LOTR8BFrw9pQlXicIB45JFKZUhVmIuAcq4N6Ou1Fo5T_0r7ktEXGYtuXZwqcDkio_gunQQ68WxmXSm_Ao2mwTb5bsx88f5BM7KfBe0UMyvBWoPbowJRBfltsoRfec8Ct7OgRyEr-rjqrk7GPDwtFF75i4gO0E3QvZ_NaQO8cGtwwa4X1ifDwvHIvoc71lXH__Fh_oURqbtK-FvGsC6mROej7KG5bzJZzn6JtBZNXozA96xjA2nTVVuDn8xYORHfUX4LOo1h-jJJPdXV7ogKaA-XwvmMh1iPjMGTHaORfBQp9mITW56LYIpl2DzF1m0Ow70PaYRXsUPpuuDemC_Yodxste9tHKAYL610qkfWtrl2H3HEyI3lKcZNVEwHyJewGhM92zg2jIWBKdsr6l4sbtzBOst5g"
+          }
+        }
+      ],
+      "assertionMethod": [
+        "did:web:masanork.github.io#root-ed25519",
+        "did:web:masanork.github.io#build-1767248589672-ed25519",
+        "did:web:masanork.github.io#build-1767248589672-pqc"
+      ]
+    }
+  ]
+}
+</script>
+
+<script type="application/vnd.weba+context-chain" id="weba-context-chain">
+[
+  {
+    "prevHash": null,
+    "event": {
+      "type": "Genesis",
+      "timestamp": "2026-01-01T06:26:35.584Z",
+      "payload": {
+        "issuer": "did:web:masanork.github.io",
+        "payloadHash": "eb6192073f39dc1748de1739382094b93b6dba5cb7ed46d625a3decd9074e800",
+        "metadata": {}
+      }
+    },
+    "eventHash": "783752907efd6849f0fbc1943db1549ac46491b8f67e7fcab1d605779baf9a59",
+    "chainHash": "ea7f0a6374cfde34083fbb9cf5b7161e17e62447e155eee4056f4a3616311531"
+  }
+]
+</script>
+<script type="application/vnd.weba+container-signature" id="weba-container-signature">
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "WebAContainerSignature"
+  ],
+  "issuer": "did:web:masanork.github.io",
+  "issuanceDate": "2026-01-01T06:26:35.603Z",
+  "credentialSubject": {
+    "id": "did:web:masanork.github.io/2014-06-21-line#container",
+    "containerHash": "5f59fb30ab72d1218299f6a3815b5ada0bad86a826ad3e4ee3f03506aff5eb55",
+    "buildId": "build-1767248589672",
+    "latestContextHash": "3c35ec3f34dd54513c921140e9c46e2e9a6a4fcc0565f9c82ba9356ddfbb79fe"
+  },
+  "proof": [
+    {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "verificationMethod": "did:web:masanork.github.io#build-1767248589672-ed25519",
+      "proofPurpose": "assertionMethod",
+      "created": "2026-01-01T06:26:35.603Z",
+      "proofValue": "z5XSmDJ68krFK7YxMPGiBenoTXgct5EXUM9p4fZwqYL13upmaCd5MBK2PSeJiiddukThNH5J8MGHJNnKYnjopLZ4v"
+    },
+    {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "ml-dsa-44-jcs-2025",
+      "verificationMethod": "did:web:masanork.github.io#build-1767248589672-pqc",
+      "proofPurpose": "assertionMethod",
+      "created": "2026-01-01T06:26:35.603Z",
+      "proofValue": "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"
+    }
+  ]
+}
+</script></body>
 </html>
