@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data: blob:; img-src 'self' data:; worker-src 'self' blob:; connect-src 'self' blob:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data: blob:; img-src 'self' data: blob:; object-src 'self' blob:; media-src 'self' blob:; worker-src 'self' blob:; connect-src 'self' blob:;">
     <title>ised@glocom</title>
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxMTE4MjciLz48dGV4dCB4PSI1MCUiIHk9IjU2JSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4IiBmaWxsPSIjZjlmYWZiIiBmb250LXdlaWdodD0iNzAwIj5TUjwvdGV4dD48L3N2Zz4=">
     <link rel="stylesheet" href="style.css">
@@ -189,17 +189,15 @@
     </main>
 
 <!-- Web/A L1 Manifest & Blobs -->
-<script>window.__WEBA_MANIFEST = {"templateDigest":"","blobs":[],"createdAt":"2026-01-04T01:23:42.013Z"};</script>
+<script>window.__WEBA_MANIFEST = {"templateDigest":"","blobs":[],"createdAt":"2026-01-04T14:47:04.322Z"};</script>
 <script type="module">
 (async function() {
   const m = window.__WEBA_MANIFEST;
   if (!m || !m.blobs) return;
 
-  // Initialize process shim for libraries that expect it
-  window.process = window.process || {};
-  window.process.env = window.process.env || { NODE_ENV: 'production' };
-  window.process.browser = true;
-  window.global = window.global || window;
+  // NOTE: Node.js shims removed (2025-01-04) after bundle optimization.
+  // Bundle now uses native browser APIs (Uint8Array, atob, btoa) with feature detection fallbacks.
+  // All bundled code (cbor-x, encoding.ts) gracefully falls back when Buffer/process are unavailable.
   
   const processBlob = async (b) => {
     const el = document.getElementById('weba-blob-' + b.digest.split(':')[1]);
@@ -264,13 +262,13 @@
           "publicKeyHex": "e2d4597c3df793b9d9f9e35ccc9be43572c8e433127b02ee842a00273b64deae"
         },
         {
-          "id": "did:web:masanork.github.io#build-1767489728162-ed25519",
+          "id": "did:web:masanork.github.io#build-1767537923730-ed25519",
           "type": "Ed25519VerificationKey2020",
           "controller": "did:web:masanork.github.io",
           "publicKeyHex": "4b298808a3b88a3d8269001643e696fabdc1d0feaa749203f29488651108dca1"
         },
         {
-          "id": "did:web:masanork.github.io#build-1767489728162-pqc",
+          "id": "did:web:masanork.github.io#build-1767537923730-pqc",
           "type": "JsonWebKey2020",
           "controller": "did:web:masanork.github.io",
           "publicKeyJwk": {
@@ -282,8 +280,8 @@
       ],
       "assertionMethod": [
         "did:web:masanork.github.io#root-ed25519",
-        "did:web:masanork.github.io#build-1767489728162-ed25519",
-        "did:web:masanork.github.io#build-1767489728162-pqc"
+        "did:web:masanork.github.io#build-1767537923730-ed25519",
+        "did:web:masanork.github.io#build-1767537923730-pqc"
       ]
     }
   ],
@@ -391,6 +389,18 @@
     },
     "eventHash": "1f4c98cd6a5aa6b45dba40bd1fdfbb66963e8fc325139867621d737b780cf7ff",
     "chainHash": "dbe834a013ab87983d216cd9ab25d218817566b5b8aef9869ed1c5a7fea33f7b"
+  },
+  {
+    "prevHash": "dbe834a013ab87983d216cd9ab25d218817566b5b8aef9869ed1c5a7fea33f7b",
+    "event": {
+      "type": "L4Rebuild",
+      "timestamp": "2026-01-04T14:47:04.216Z",
+      "payload": {
+        "buildId": "build-1767537923730"
+      }
+    },
+    "eventHash": "e0aab761126156ca5c32fffb73fcdb0a9f822959c5794ac50b72309f39476e44",
+    "chainHash": "4069e7d8720c01ffec878ffedae8b7b453d88c1a45b8ee395a85e0ea4d0cd288"
   }
 ]
 </script>
@@ -404,29 +414,29 @@
     "WebAContainerSignature"
   ],
   "issuer": "did:web:masanork.github.io",
-  "issuanceDate": "2026-01-04T01:23:42.013Z",
+  "issuanceDate": "2026-01-04T14:47:04.323Z",
   "credentialSubject": {
     "id": "did:web:masanork.github.io/2005-04-09-isedglocom#container",
-    "containerHash": "0f55f348752033a3f8c8d75648c26db1ca1c8418f4fb486a00567d6720ac05e8",
-    "buildId": "build-1767489728162",
-    "latestContextHash": "2a77d238f46353e2f730e35179d57b19d2c91aa7fc19529f51c726264ba71657"
+    "containerHash": "4d251e2a741c8823c3f3b1b4df25ecfb9dc6809edc6eed13a5a2c2a7bbe5f73f",
+    "buildId": "build-1767537923730",
+    "latestContextHash": "b4f3c59ec0a919587603295d524b47b7823df629a561a6b1b4ba088be5fe94b9"
   },
   "proof": [
     {
       "type": "DataIntegrityProof",
       "cryptosuite": "eddsa-jcs-2022",
-      "verificationMethod": "did:web:masanork.github.io#build-1767489728162-ed25519",
+      "verificationMethod": "did:web:masanork.github.io#build-1767537923730-ed25519",
       "proofPurpose": "assertionMethod",
-      "created": "2026-01-04T01:23:42.013Z",
-      "proofValue": "zQLqzMcuVP73zkqFZUyAY3o5n1e7gbUK52GaVqHcPHUutbpiN3WmgbYE8piRchsp1Zop7JCuxjaziuFx5pFn2y49"
+      "created": "2026-01-04T14:47:04.323Z",
+      "proofValue": "z2ohghSt7kKJ8jqKT5jrMvUPqBDavAj8UkNhNecxAGP1aLnEnuLTViF4d3ii4tk9ogBgZfJM3jkcdv2PwLSURSSGS"
     },
     {
       "type": "DataIntegrityProof",
       "cryptosuite": "ml-dsa-44-jcs-2025",
-      "verificationMethod": "did:web:masanork.github.io#build-1767489728162-pqc",
+      "verificationMethod": "did:web:masanork.github.io#build-1767537923730-pqc",
       "proofPurpose": "assertionMethod",
-      "created": "2026-01-04T01:23:42.013Z",
-      "proofValue": "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"
+      "created": "2026-01-04T14:47:04.323Z",
+      "proofValue": "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"
     }
   ]
 }
